@@ -121,7 +121,7 @@ async function myfuncsignup(e) {
   }
 }
 
-let token = JSON.parse(localStorage.getItem("token")) || null;
+let token = localStorage.getItem("token") || null;
 let logouthide = document.querySelector("#logout");
 if (!token) {
   logouthide.style.display = "none";

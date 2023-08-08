@@ -30,7 +30,7 @@
       <button id="create_playlsit">playlsit</button>
       <button id="home">home</button>
       <div id="popupForm" >
-        <form class="popup">
+        <form class="popup" id="popup" onsubmit="onAdd()">
             <!-- Your form fields here -->
 
             <h1>Your own playlsit</h1>
@@ -39,7 +39,13 @@
          
             <input type="text" id="desc" placeholder=" Description">
           
-            <button onclick="onAdd()" id="createplaylistbtn" >Create Playlsit</button>
+            <select name="section" id="private">
+                <option value="private" id="is_private">private</option>
+                <option value="public" id="public">public</option>
+               
+            </select>
+            <input type="submit" value=">Create Playlsit">
+    
          
             
          
@@ -106,7 +112,7 @@
 //createplaylist
 
 let createplaylist = document.getElementById("create_playlsit")
-   
+   const currUser = JSON.parse(localStorage.getItem("user"))
 
    const popupForm = document.getElementById("popupForm");
    
@@ -126,15 +132,14 @@ let createplaylist = document.getElementById("create_playlsit")
    let createplaylistbtn = document.getElementById("createplaylistbtn")
    
    
-   createplaylistbtn.addEventListener("click",()=>{
-     
-   })
+const addPlaylistForm = document.getElementById("popup")
    
    const onAdd = () => {
      const payload = {
-       title: document.getElementById("title").value,
-       desc: document.getElementById("desc").value,
-     
+        userid :currUser._id,
+       title: addPlaylistForm[0].value,
+       desc: addPlaylistForm[1].value,
+       isprivate: addPlaylistForm[2].value
      };
      console.log(payload)
    
@@ -142,7 +147,7 @@ let createplaylist = document.getElementById("create_playlsit")
        method: "POST",
        headers: {
          "Content-type": "application/json",
-        //  Authorization: localStorage.getItem("token")
+         Authorization: localStorage.getItem("token")
        },
        body: JSON.stringify(payload)
       
@@ -152,27 +157,66 @@ let createplaylist = document.getElementById("create_playlsit")
        })
        .then((res) => {
          console.log(res);
-       
-         const newItem = document.createElement("div");
-         newItem.innerHTML = `
-           <div >
-               <h5>Task</h5> 
-             <p>Title: ${res.title}</p>
-             <p>Desc: ${res.desc}</p>
+         fetchAndRender(currUser._id);
         
-               <button onclick="deletetodo('${res._id}')">delete</button>
-          
-           </div>
-         `;
-        // window.location.href="./user.html"
-         const parent = document.getElementById("cont");
-         parent.appendChild(newItem);
-         alert("playlist sucessful created")
        })
        .catch((err) => {
          console.log(err);
        });
    };
    
+
+
+   const fetchAndRender = async (uid) => {
+  try {
+    let list = await fetch(`http://localhost:3000/playlist/${uid}`, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: localStorage.getItem("token")
+      },
+    });
+
+    if (list.ok) {
+      const listData = await list.json();
+      display(listData);
+    } else {
+      console.log("Failed to fetch playlists.");
+    }
+  } catch (err) {
+    alert("Something went wrong");
+    console.log(err);
+  }
+};
+
+function display(data) {
+  cont.innerHTML = "";
+
+  data.forEach((el) => {
+    const list = document.createElement("div");
+    const poster = document.createElement("img");
+    const title = document.createElement("p");
+    const dec = document.createElement("p");
+
+    poster.src = el.poster;
+    title.textContent = el.title;
+    dec.textContent = el.desc;
+
+    list.append(poster, title, dec);
+    cont.append(list);
+  });
+}
+
+window.addEventListener("load", () => {
+  fetchAndRender(currUser._id);
+});
+
+
+
+
+
+
+
+
    
 </script>

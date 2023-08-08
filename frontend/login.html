@@ -152,12 +152,15 @@ fetch("http://localhost:3000/user/login",{
     return res.json();
 })
 .then((res)=>{
+    console.log(res.token);
+    console.log(res.user);
     console.log(res);
-    localStorage.setItem("token",JSON.stringify(res.token));
+    localStorage.setItem("token",(res.token));
 
-    // localStorage.setItem("token",res.token);
+
+    localStorage.setItem("user",JSON.stringify(res.user));
     alert("login done!")
-    window.location.href = "./index.html";
+    window.location.href = "./user.html";
 
 
     

@@ -10,7 +10,7 @@ const auth = async(req,res,next)=>{
     res.status(204).send({msg:"login agin"})
    }else{
     try {
-       const decoded = jwt.verify(playlist);
+       const decoded = jwt.verify(token,"token");
        req.body.userID = decoded.userID;
        req.body.name = decoded.name;
        req.body.time = new Date();

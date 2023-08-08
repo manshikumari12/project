@@ -5,6 +5,7 @@ const palylistrouter =express.Router()
 
 
 
+
 palylistrouter.get("/playlist",async(req,res)=>{
     try {
         const restaurant = await playlistmodel.find();
@@ -15,6 +16,35 @@ palylistrouter.get("/playlist",async(req,res)=>{
 });
 
 
+
+
+palylistrouter.get("/playlist/:id",async(req,res)=>{
+    try {
+const userid = req.params.id
+const resp =await playlistmodel.find({userid}).select({ title:1, _id:0,})
+console.log(resp)
+res.status(200).send(resp)
+        
+    } catch (error) {
+        console.log(error)
+        res.status(404).send("faild to get")  
+    }
+})
+
+
+
+palylistrouter.get("/playlistmovie/:uid",async(req,res)=>{
+    try {
+const userid = req.params.uid
+
+const allpaly =await playlistmodel.find({userid})
+res.status(200).json({data:allpaly})
+        
+    } catch (error) {
+        console.log(error)
+        res.status(404).send("faild to get")  
+    }
+})
   
 
 
@@ -23,15 +53,17 @@ palylistrouter.post("/create",async(req,res)=>{
     try {
         const { title, desc,isprivate,userid} =req.body
 
+        console.log(userid)
         const user =await playlistmodel.findOne({ title, userid })
-      console.log(user)
+    //   console.log(user)
         if(user){
-           return res.status(500).send("user already present")
+           return res.status(500).json({msg:"Playlist already present"})
         }
-        const newlist =new playlistmodel({ userid,title, desc,isprivate})
+        const pri = (isprivate == "private") ? true : false
+        const newlist =new playlistmodel({ userid,title, desc,isprivate : pri})
 
         await newlist.save()
-        res.send("playlist sucessfully")
+        res.json({msg:"playlist sucessfully"})
 
     } catch (error) {
         console.log(error)
@@ -52,6 +84,7 @@ palylistrouter.post("/movie/:playid", async (req, res) => {
         console.log(playlisttime);
 
         const user = playlisttime.playlist.find((item) => item.Title == Title);
+
         console.log(user)
         if (user) {
             return res.json({ msg: "Movie already present" });
@@ -65,6 +98,18 @@ palylistrouter.post("/movie/:playid", async (req, res) => {
     }
 
 });
+
+
+
+
+  
+
+
+
+
+
+
+
 
 
 

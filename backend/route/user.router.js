@@ -35,15 +35,15 @@ userRouter.post("/register", async (req, res) => {
   userRouter.post("/login", async (req, res) => {
     const { email, password } = req.body;
     try {
-      const user = await userModel.find({ email });
-      if (user.length > 0) {
-        bcrypt.compare(password, user[0].password, (err, result) => {
+      const user = await userModel.findOne({ email });
+      if (user) {
+        bcrypt.compare(password, user.password, (err, result) => {
           if (result) {
-            const token = jwt.sign({ userId: user[0]._id }, "mannu");
+            const token = jwt.sign({ userId: user._id }, "token");
 
         
 
-            res.send({ msg: "Logged in ", token: token });
+            res.send({ msg: "Logged in ", token: token,user });
           }
         });
       } else {
