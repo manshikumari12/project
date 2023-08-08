@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+
+</head>
+<body>
+  
+    <div class="movie">
+     <h1>Enjoy Your Playlist<span style='font-size:40px;'>&#129505;</span></h1>
+     <h1>About</h1>
+     <h1>palylist</h1>
+
+     <div>
+        <button id="signupme">Register/Login</button>
+        <button id="logout">Logout</button>
+     </div>
+ 
+
+ 
+
+
+       
+    </div>
+    <hr style="color: white;">
+
+    <div class="para">      <p>Discover, watch, and organize your favorite playlist with our user-friendly platform. Experience the magic of movies and playlists with our platform.<span >&#127925;</span> <span >&#127881;</span></p></div>
+  
+  
+
+
+      <div class="imglist">
+
+   
+
+
+
+
+             <div>
+            <img src="https://th.bing.com/th/id/OIP.1umjRUVLTbPQCPVU_q1HPgHaK-?w=120&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="">
+            <p><span >&#11088;</span><span >&#11088;</span><span >&#11088;</span><span >&#11088;</span></p>
+        </div>
+
+
+
+        <div>
+            <img src="https://th.bing.com/th/id/OIP.1umjRUVLTbPQCPVU_q1HPgHaK-?w=120&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="">
+            <p><span >&#11088;</span><span >&#11088;</span><span >&#11088;</span><span >&#11088;</span></p>
+        </div>
+
+
+
+        <div>
+            <img src="https://th.bing.com/th/id/OIP.1umjRUVLTbPQCPVU_q1HPgHaK-?w=120&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="">
+            <p><span >&#11088;</span><span >&#11088;</span><span >&#11088;</span><span >&#11088;</span></p>
+        </div>
+
+
+ 
+          <div id="discription">
+           
+            <h3>Welcome to </h3>
+            <h4>Enjoy Your Playlist<span style='font-size:40px;'>&#129505;</span></h4>
+            <p> if they all are  5 star<span >&#11088;</span> which one is best ?</p>
+        </div>
+
+     
+
+
+
+      </div>
+
+      
+    
+</body>
+</html>
+<script>
+
+    
+let signup = document.querySelector("#signupme");
+signup.addEventListener("click", myfuncsignup);
+
+
+
+async function myfuncsignup(e) {
+  e.preventDefault();
+  window.location.href = "./login.html";
+}
+
+    let logout = document.getElementById("logout")
+    logout.addEventListener("click", myfunclogout);
+
+
+    async function myfunclogout(e) {
+  e.preventDefault();
+
+  console.log(token);
+
+  try {
+    let data = await fetch("http://localhost:3000/user/logout", {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    data = await data.json();
+    console.log(data);
+    alert(data.msg);
+    if (data.msg == "logout successfull") {
+      localStorage.removeItem("token");
+      let logouthide = document.querySelector("#logoutme");
+
+      logouthide.style.display = "none";
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+let token = JSON.parse(localStorage.getItem("token")) || null;
+let logouthide = document.querySelector("#logout");
+if (!token) {
+  logouthide.style.display = "none";
+} else {
+  logouthide.style.display = "block";
+}
+
+</script>

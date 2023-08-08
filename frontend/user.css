@@ -1,0 +1,190 @@
+*{
+    
+    /* border: 1px solid red;       */
+    font-family: "Poppins", sans-serif;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body{
+      /* border: 1px solid rgba(255, 0, 0, 0.294); */
+      background-color: rgb(34, 34, 34);
+      color: rgb(233, 231, 231);
+  }
+  
+  header {
+      margin-top: -1px;
+      position: fixed;
+      width: 100%;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+      background-color: rgb(89, 87, 87);
+    color: rgb(54, 52, 52);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header>h1{
+    font-family: Cursive;
+  font-size: 20px;
+        width: 60%;
+        color: rgb(233, 231, 231);
+        text-align: center;
+        margin-top: -10px;
+    
+    }
+  #create_playlsit{
+      /* border: 1px solid red; */
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin-right: 10px;
+      background:crimson;
+      color: white;
+  
+  }
+  #home{
+      /* border: 1px solid red; */
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      margin-right: 80px;
+      background:crimson;
+      color: white
+      
+  }
+  .user-profile {
+      /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+  }
+  
+  main {
+      border: 3px solid red;
+    padding: 20px;
+  }
+  #search-input{
+      width: 450px;
+      margin-top: -17px;
+      height: 17px;
+      background-color:rgb(211, 208, 208);
+      /* border: 1px solid blueviolet; */
+      border: none;
+  }
+  #input{
+      margin-top: 10px;
+      /* border: 1px solid red;   */
+      width: 500px;
+      height: 33px;
+      background-color:rgb(211, 208, 208);
+      padding: 10px;
+      border-radius: 50px;
+  
+  }
+  #searchbtn{
+    margin-top: 9px;
+    padding: 10px;
+    background: crimson;
+    color:white;
+    border-radius: 5px;
+  border: none;
+  margin-left: 10px;
+  
+  }
+  
+  .movie-search, .playlist {
+      /* border: 1px solid rgb(49, 13, 166); */
+      width: 700px;
+   
+      display: flex;
+      margin-right: 150px;
+    margin-bottom: 20px;
+  
+  }
+ 
+  #cont{
+      border: 1px solid rgb(168, 162, 162);
+      margin-top: 100px;
+      width: 100%;
+      height: 700px;
+
+  
+  }
+  #cont>h1{
+    /* border: 1px solid rgb(36, 178, 11); */
+
+    width: 100%;
+
+
+}
+
+  .footer{
+      display: flex;
+      justify-content: space-around;
+      padding: 40px;
+  }
+  li{
+      list-style-type: none;
+      margin-top: 10px;
+    color: white
+  }
+
+  
+#popupForm {
+    display: none; 
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    right: 23%;
+    /* width: -280%; */
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+    background-color: rgb(158, 155, 155);
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  
+  }
+  
+  .popup{
+    /* border: 1px solid red; */
+    padding-top: 80px;
+    /* width: 60%; */
+    padding-bottom: 30px;
+    /* padding-left: -25px; */
+    /* padding-right: -25px; */
+  }
+  .popup>h1{
+    /* border: 1px solid red; */
+    margin-top: -0px;
+    color: rgb(224, 221, 221);
+    margin-top: 5px;
+    font-size: 20px;
+  
+  }
+  .popup>input{
+    /* border: 1px solid red; */
+    border-radius: 4px;
+    width: 60%;
+    height: 30px;
+    margin-top: 8px;
+    border: none;
+  margin-left: 80px;
+  
+  
+  }
+  #createplaylistbtn{
+    /* border: 1px solid red; */
+    margin-top: 12px;
+    padding: 7px;
+    background: crimson;
+    color:white;
+    border-radius: 5px;
+  border: none;
+  margin-left: 130px;
+  /* justify-content: center; */
+  
+  
+  }
+  

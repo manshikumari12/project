@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./moviepage.css">
+
+  <title>Movie Playlist App</title>
+</head>
+
+<body>
+  <header>
+    <h1>Enjoy Your Playlist<span style='font-size:20px;'>&#129505;</span></h1>
+  
+    <div class="user-profile">
+
+      <section class="movie-search">
+     
+       
+        <div id="input">
+            <input type="text" id="search-input" placeholder="Enter movie title">
+           
+           
+        </div>
+        <div> <button id="searchbtn">Search</button></div>
+      
+        <div id="search-results"></div>
+      </section>
+      <!-- <span id="username">Guest</span> -->
+      <button id="create_playlsit">playlist</button>
+      <button id="login-button">Logout</button>
+      <button id="signup-button">home</button>
+
+      <div id="popupForm" >
+        <form class="popup">
+            <!-- Your form fields here -->
+
+            <h1>Your own playlsit</h1>
+       
+            <input type="text" id="title"  placeholder=" Title">
+         
+            <input type="text" id="desc" placeholder=" Description">
+          
+            <button onclick="onAdd()" id="createplaylistbtn" >Create Playlsit</button>
+         
+            
+         
+        </form>
+    </div>
+
+    </div>
+  </header>
+ 
+    
+ 
+
+  
+
+
+  <main>
+    <div class="container">
+        <h1>Playlist</h1>
+
+
+
+        <div class="wrapper">
+            <!-- <i class="fas fa-angle-left" id="left"></i> -->
+            <ul class="carousel">
+              <li class="card">
+                <div class="img">
+                  <img src="https://th.bing.com/th/id/OIP.1umjRUVLTbPQCPVU_q1HPgHaK-?w=120&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="" draggable="false" />
+                      <h2>Emma</h2>
+                <span>$2</span>
+                </div>
+            
+             
+              </li>
+      
+              <li class="card">
+                <div class="img">
+                  <img src="https://i.pinimg.com/originals/6c/2f/de/6c2fde0235ece77e4fc91f8ebe8d8739.jpg" alt="" draggable="false" />
+                  <h2>Emma</h2>
+                  <span>$2</span>
+                </div>
+      
+               
+              </li>
+      
+              <li class="card">
+                <div class="img">
+                  <img src="https://data1.ibtimes.co.in/en/full/549060/action-jackson.jpg" alt="" draggable="false" />
+                  <h2>Emma</h2>
+                  <span>$2</span>
+                </div>
+         
+             
+              </li>
+      
+              <li class="card">
+                <div class="img">
+                  <img src="https://th.bing.com/th/id/OIP.1umjRUVLTbPQCPVU_q1HPgHaK-?w=120&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="" draggable="false" />
+                  
+                <h2>Emma</h2>
+                <span>$2</span>
+                </div>
+      
+              </li>
+      
+              <li class="card">
+                <div class="img">
+                  <img src="https://th.bing.com/th/id/OIP.ng38lIHD2D_dQre8DTxjhgHaKs?w=117&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" alt="" draggable="false" />
+                  <h2>Emma</h2>
+                  <span>$2</span>
+                </div>
+      
+             
+              </li>
+      
+              <li class="card">
+                <div class="img">
+                
+                        <img src="https://i.pinimg.com/736x/0d/85/d5/0d85d5a61d012f3fc8afb79e20d8641d.jpg" alt="" draggable="false" />
+            
+                        <h2>Emma</h2>
+                        <span>$2</span>
+     
+                
+         
+                
+                </div>
+      
+               
+              </li>
+            </ul>
+            <i class="fas fa-angle-right" id="right"></i>
+          </div>
+
+
+<div id="movie">
+
+
+
+
+</div>
+
+<div id="paginationcont">
+
+  
+</div>
+
+
+<!-- ========================================== -->
+
+
+
+
+    </div>
+  </main>
+
+  <hr>
+  <div class="footer">
+    <ul class="foot">
+<li>Google Play</li>
+<li> Play Pass</li>
+<li>  Play Points</li>
+<li>  Gift cards</li>
+<li>  Redeem</li>
+<li> Refund policy</li>
+<li>Kids & family</li>
+<li>  Parent Guide</li>
+    </ul>
+    <ul class="foot">
+        <li>  Family sharing</li>
+        <li>   Terms of Service</li>
+        <li>    About Google Play</li>
+        <li>   Developers</li>
+        <li>  Redeem</li>
+        
+            </ul>
+            <ul class="foot">
+                <li>Google Play</li>
+                <li> Play Pass</li>
+                
+                    </ul>
+
+                    <div class="bottom">
+                        <span>facebook</span>
+                        <span>Instagram</span>
+                        <span>twitter</span>
+                    </div>
+  </div>
+ 
+    
+
+  
+
+</body>
+</html>
+<script>
+    let carousel = document.querySelector(".carousel");
+let btns = document.querySelectorAll(".wrapper i");
+let carouselChildren = [...carousel.children];
+let wrapper = document.querySelector(".wrapper");
+
+
+let cardWidth = carousel.querySelector(".card").offsetWidth;
+let isDragging = false,
+  startX,
+  startScrollLeft,
+  isAutoPlay = true,
+  timeoutId;
+
+
+let cardsPerView = Math.round(carousel.offsetWidth / cardWidth);
+
+
+carouselChildren
+  .slice(-cardsPerView)
+  .reverse()
+  .forEach((card) => {
+    carousel.insertAdjacentHTML("afterbegin", card.outerHTML);
+  });
+
+//inserting copied few first cards to end of the carousel for infinite scrolling
+carouselChildren.slice(0, cardsPerView).forEach((card) => {
+  carousel.insertAdjacentHTML("beforeend", card.outerHTML);
+});
+
+btns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    //if the clicked button id is left scrolling carousel towards left by card width else towards right by card width
+    carousel.scrollLeft += btn.id == "left" ? -cardWidth : cardWidth;
+  });
+});
+
+let dragStart = (e) => {
+  isDragging = true;
+
+  carousel.classList.add("dragging");
+
+  //recording initial cursor and scroll position
+  startX = e.pageX;
+  startScrollLeft = carousel.scrollLeft;
+};
+
+let dragging = (e) => {
+  //returning here if the isDragging value is false
+  if (!isDragging) return;
+
+  //scrolling carousel according to mouse cursor
+  carousel.scrollLeft = startScrollLeft - (e.pageX - startX);
+};
+
+let dragStop = () => {
+  isDragging = false;
+
+  carousel.classList.remove("dragging");
+};
+
+let infiniteScroll = () => {
+  //if the carousel is at begining, scroll to end
+  //else carousel at end , scroll to beginning
+  if (carousel.scrollLeft === 0) {
+    carousel.classList.add("no-transition");
+    carousel.scrollLeft = carousel.scrollWidth - 2 * carousel.offsetWidth;
+    carousel.classList.remove("no-transition");
+  } else if (
+    Math.ceil(carousel.scrollLeft) ===
+    carousel.scrollWidth - carousel.offsetWidth
+  ) {
+    carousel.classList.add("no-transition");
+    carousel.scrollLeft = carousel.offsetWidth;
+    carousel.classList.remove("no-transition");
+  }
+
+  //clearing timeout & starting auto play if the mouse is not hovering the carousel
+  clearTimeout(timeoutId);
+  if (!wrapper.matches(":hover")) autoPlay();
+};
+
+let autoPlay = () => {
+  //if the device is not mobile or tab, enabling auto play
+  if (window.innerWidth < 800 || !isAutoPlay) return; //returning if the device is not desktop & isAutoPlay is false
+
+  //autoplaying the carousel after every 2500 ms
+  timeoutId = setTimeout(() => {
+    carousel.scrollLeft += cardWidth;
+  }, 2500);
+};
+
+autoPlay();
+
+carousel.addEventListener("mousedown", dragStart);
+carousel.addEventListener("mousemove", dragging);
+document.addEventListener("mouseup", dragStop);
+carousel.addEventListener("scroll", infiniteScroll);
+
+//auto play will be active only when there is no hover on carousel
+wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
+wrapper.addEventListener("mouseleave", autoPlay);
+
+
+let homepage=document.getElementById("signup-button")
+
+homepage.addEventListener("click",()=>{
+  window.location.href="./index.html"
+})
+
+const url = `https://www.omdbapi.com/?i=tt3896198&apikey=b9e84ac1&s=`
+
+async function fetchData(movieName,pageNo=1){
+      try{
+         let res = await fetch(`${url}${movieName}&page=${pageNo}`)
+         res = await res.json()
+      
+         displaydata(res)
+         paginate(res.totalResults)
+    
+        console.log(res)
+      }catch(err){
+           console.log(err)
+      }
+}
+
+window.addEventListener("load",()=>{
+    fetchData("dil")
+})
+
+
+let searchInput = document.getElementById("search-input");
+let searchButton = document.getElementById("searchbtn")
+
+searchButton.addEventListener("click", () => {
+  const searchTerm = searchInput.value;
+  
+   fetchData(searchTerm);
+  
+});
+
+const paginationContainer=document.getElementById("paginationcont")
+
+function paginate(length) {
+	const numOfBtns = Math.ceil(length/10)
+	paginationContainer.innerHTML=null
+	for(let i=1;i<=numOfBtns;i++){
+		const btn = document.createElement("button")
+    btn.style.cssText = "background-color: crimson; color: white; padding:5px; border: none; border-radius: 5px; cursor: pointer;margin-left:4px";
+		btn.textContent = i
+	
+			btn.addEventListener("click", ()=>{
+				
+				fetchData(searchInput.value, i)
+			})
+		
+		
+		paginationContainer.append(btn)
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let div = document.getElementById("movie")
+
+function displaydata(data){
+  div.innerHTML=""
+
+data.Search.forEach((ele)=>{
+
+
+  let card = document.createElement("div")
+  let image = document.createElement("img")
+  let release = document.createElement("p")
+  let title = document.createElement("h5")
+  let rate = document.createElement("p")
+  let btnplaylist = document.createElement("button");
+
+  image.src=ele.Poster
+  release.textContent=ele.Type
+ title.textContent=ele.Title
+ rate.textContent=ele.Year
+ btnplaylist.innerText = "Playlsit"
+btnplaylist.style.cssText ="background-color:crimson"
+
+//  btn.addEventListener("click",()=>{
+//           
+//             })
+
+  card.append(image,title,rate,release,btnplaylist)
+  div.append(card)
+})
+// console.log(data)
+}
+  
+
+
+
+
+//createplaylist
+
+let createplaylist = document.getElementById("create_playlsit")
+   
+
+const popupForm = document.getElementById("popupForm");
+
+createplaylist.addEventListener("click", () => {
+    popupForm.style.display = "block"; // Show the popup
+});
+
+popupForm.addEventListener("submit", (event) => {
+    event.preventDefault(); // Prevent form submission
+    
+    // Handle form submission here
+    
+    popupForm.style.display = "none"; // Hide the popup after submission
+});
+
+
+let createplaylistbtn = document.getElementById("createplaylistbtn")
+
+
+createplaylistbtn.addEventListener("click",()=>{
+  
+})
+
+const onAdd = () => {
+  const payload = {
+    title: document.getElementById("title").value,
+    desc: document.getElementById("desc").value,
+  
+  };
+
+  fetch("http://localhost:3000/play/create", {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+      Authorization: localStorage.getItem("token")
+    },
+    body: JSON.stringify(payload)
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      console.log(res);
+    
+      const newItem = document.createElement("div");
+      newItem.innerHTML = `
+        <div >
+            <h5>Task</h5> 
+          <p>Name: ${res.title}</p>
+          <p>Notes: ${res.desc}</p>
+     
+            <button onclick="deletetodo('${res._id}')">delete</button>
+       
+        </div>
+      `;
+     window.location.href="./user.html"
+      const parent = document.getElementById("items");
+      parent.appendChild(newItem);
+      alert("play")
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+
+
+
+</script>

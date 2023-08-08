@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./user.css">
+
+  <title>Movie Playlist App</title>
+</head>
+
+<body>
+  <header>
+    <h1>Enjoy Your Playlist<span style='font-size:20px;'>&#129505;</span></h1>
+  
+    <div class="user-profile">
+
+      <section class="movie-search">
+     
+       
+        <div id="input">
+            <input type="text" id="search-input" placeholder="Enter movie title">
+           
+           
+        </div>
+        <div> <button id="searchbtn">Search</button></div>
+      
+        <div id="search-results"></div>
+      </section>
+      <!-- <span id="username">Guest</span> -->
+      <button id="create_playlsit">playlsit</button>
+      <button id="home">home</button>
+      <div id="popupForm" >
+        <form class="popup">
+            <!-- Your form fields here -->
+
+            <h1>Your own playlsit</h1>
+       
+            <input type="text" id="title"  placeholder=" Title">
+         
+            <input type="text" id="desc" placeholder=" Description">
+          
+            <button onclick="onAdd()" id="createplaylistbtn" >Create Playlsit</button>
+         
+            
+         
+        </form>
+    </div>
+
+    </div>
+  </header>
+  <main>
+    <div id="cont">
+        <h1>Playlist</h1>
+
+       
+
+
+
+    </div>
+  </main>
+ 
+ 
+
+
+  <hr>
+  <div class="footer">
+    <ul class="foot">
+<li>Google Play</li>
+<li> Play Pass</li>
+<li>  Play Points</li>
+<li>  Gift cards</li>
+<li>  Redeem</li>
+<li> Refund policy</li>
+<li>Kids & family</li>
+<li>  Parent Guide</li>
+    </ul>
+    <ul class="foot">
+        <li>  Family sharing</li>
+        <li>   Terms of Service</li>
+        <li>    About Google Play</li>
+        <li>   Developers</li>
+        <li>  Redeem</li>
+        
+            </ul>
+            <ul class="foot">
+                <li>Google Play</li>
+                <li> Play Pass</li>
+                
+                    </ul>
+
+                    <div class="bottom">
+                        <span>facebook</span>
+                        <span>Instagram</span>
+                        <span>twitter</span>
+                    </div>
+  </div>
+ 
+    
+
+  
+
+</body>
+</html>
+<script>
+    
+//createplaylist
+
+let createplaylist = document.getElementById("create_playlsit")
+   
+
+   const popupForm = document.getElementById("popupForm");
+   
+   createplaylist.addEventListener("click", () => {
+       popupForm.style.display = "block"; // Show the popup
+   });
+   
+   popupForm.addEventListener("submit", (event) => {
+       event.preventDefault(); // Prevent form submission
+       
+       // Handle form submission here
+       
+       popupForm.style.display = "none"; // Hide the popup after submission
+   });
+   
+   
+   let createplaylistbtn = document.getElementById("createplaylistbtn")
+   
+   
+   createplaylistbtn.addEventListener("click",()=>{
+     
+   })
+   
+   const onAdd = () => {
+     const payload = {
+       title: document.getElementById("title").value,
+       desc: document.getElementById("desc").value,
+     
+     };
+     console.log(payload)
+   
+     fetch("http://localhost:3000/play/create", {
+       method: "POST",
+       headers: {
+         "Content-type": "application/json",
+        //  Authorization: localStorage.getItem("token")
+       },
+       body: JSON.stringify(payload)
+      
+     })
+       .then((res) => {
+         return res.json();
+       })
+       .then((res) => {
+         console.log(res);
+       
+         const newItem = document.createElement("div");
+         newItem.innerHTML = `
+           <div >
+               <h5>Task</h5> 
+             <p>Title: ${res.title}</p>
+             <p>Desc: ${res.desc}</p>
+        
+               <button onclick="deletetodo('${res._id}')">delete</button>
+          
+           </div>
+         `;
+        // window.location.href="./user.html"
+         const parent = document.getElementById("cont");
+         parent.appendChild(newItem);
+         alert("playlist sucessful created")
+       })
+       .catch((err) => {
+         console.log(err);
+       });
+   };
+   
+   
+</script>

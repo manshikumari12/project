@@ -1,0 +1,129 @@
+*{
+margin: 0;
+padding: 0;
+ font-family: 'Poppins', sans-serif;
+ /* position: absolute; */
+}
+
+body{
+    background-image: url("https://www.toptal.com/designers/subtlepatterns/uploads/denim.png");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+background-size: cover;
+}
+.movie{
+    /* border: 1px solid red; */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        position: absolute;
+        display: flex;
+        width: 100%;
+        padding-bottom: 20px;
+        /* margin-top: -240px; */
+}
+.movie>div{
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: center;
+    width: 100%;
+ 
+}
+#signupme{
+    /* border: 1px solid red; */
+    display: flex;
+    width: 140px;
+    padding-left: 20px;
+    height: 40px;
+    background-color: crimson;
+    color: rgb(243, 238, 238);
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+padding-top: 10px;
+}
+#logout{
+    /* border: 1px solid red; */
+    display: flex;
+    width: 80px;
+    height: 40px;  
+    background-color: crimson;
+    color: rgb(243, 238, 238);
+    margin-left: 30px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+
+}
+.movie>span{
+
+        width: 100%;
+        color: rgb(233, 231, 231);
+        text-align: center;
+        margin-top: 20px;
+    
+    }
+.movie>h1{
+font-family: Cursive;
+    width: 100%;
+    color: rgb(233, 231, 231);
+    text-align: center;
+    margin-top: 20px;
+
+}
+.para>p{
+    /* border: 1px solid red; */
+    font-family: Cursive;
+        width: 40%;
+margin-left: 850px;
+        color: rgb(233, 231, 231);
+        text-align: center;
+        margin-top: 200px;
+    
+    }
+
+
+
+
+.imglist{
+    /* border: 1px solid red; */
+    width: 300px;
+    display: flex;
+    margin-top: -90px;
+    padding-left: 50px;
+    padding-right: 450px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-left: 30px;
+    border-radius: 50px;
+    background-color: rgb(89, 87, 87);
+}
+.imglist>div{
+    /* border: 1px solid red; */
+    width: 200px;
+    /* display: flex; */
+    
+  
+}
+.imglist>div>img{
+
+  border: 2px solid goldenrod;
+
+    width: 90px;
+  
+}
+#discription>h3{
+    color: white;
+    width: 300px;
+    text-align: center;
+}
+#discription>h4{
+    color: white;
+    font-size: 30px;
+    width: 390px;
+    text-align: center;
+}
+#discription>p{
+    /* border: 1px solid red; */
+    color: white;
+    width: 350px;
+    text-align: center;
+}
