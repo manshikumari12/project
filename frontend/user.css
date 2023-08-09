@@ -9,7 +9,7 @@
   }
   body{
       /* border: 1px solid rgba(255, 0, 0, 0.294); */
-      /* background-color: rgb(34, 34, 34); */
+      background-color: rgb(34, 34, 34);
       color: rgb(233, 231, 231);
   }
   
@@ -54,6 +54,14 @@
       color: white
       
   }
+  #movie{
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 80px;
+    background:crimson;
+    color: white
+  }
   .user-profile {
       /* border: 1px solid red; */
     display: flex;
@@ -61,7 +69,7 @@
   }
   
   main {
-      border: 3px solid red;
+      /* border: 3px solid red; */
     padding: 20px;
   }
   #search-input{
@@ -81,6 +89,9 @@
       padding: 10px;
       border-radius: 50px;
   
+  }
+  input:focus {
+    outline: none;
   }
   #searchbtn{
     margin-top: 9px;
@@ -108,6 +119,10 @@
       margin-top: 100px;
       width: 100%;
       height: 700px;
+      display: flex;
+      gap: 40px;
+      padding: 40px;
+
 
   
   }
@@ -161,20 +176,37 @@
     color: rgb(224, 221, 221);
     margin-top: 5px;
     font-size: 20px;
+    margin-left: 100px;
   
   }
-  .popup>input{
+  #title{
     /* border: 1px solid red; */
     border-radius: 4px;
     width: 60%;
-    height: 30px;
+    padding: 5px;
     margin-top: 8px;
     border: none;
   margin-left: 80px;
   
   
   }
-  #createplaylistbtn{
+  #desc{
+    border-radius: 4px;
+    width: 60%;
+    padding: 5px;
+    margin-top: 8px;
+    border: none;
+  margin-left: 80px;
+  }
+  #private{
+    border-radius: 4px;
+    width: 60%;
+    height: 30px;
+    margin-top: 8px;
+    border: none;
+  margin-left: 80px;
+  }
+  #createplaylistbt{
     /* border: 1px solid red; */
     margin-top: 12px;
     padding: 7px;

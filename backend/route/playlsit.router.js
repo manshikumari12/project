@@ -55,7 +55,7 @@ palylistrouter.post("/create",async(req,res)=>{
 
         console.log(userid)
         const user =await playlistmodel.findOne({ title, userid })
-    //   console.log(user)
+      console.log(user)
         if(user){
            return res.status(500).json({msg:"Playlist already present"})
         }
@@ -63,7 +63,7 @@ palylistrouter.post("/create",async(req,res)=>{
         const newlist =new playlistmodel({ userid,title, desc,isprivate : pri})
 
         await newlist.save()
-        res.json({msg:"playlist sucessfully"})
+        res.status(200).json({msg:"playlist sucessfully"})
 
     } catch (error) {
         console.log(error)
@@ -100,6 +100,7 @@ palylistrouter.post("/movie/:playid", async (req, res) => {
 });
 
 
+	
 
 
   
