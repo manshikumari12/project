@@ -5,7 +5,7 @@ const palylistrouter =express.Router()
 
 
 
-
+//all playlist
 palylistrouter.get("/playlist",async(req,res)=>{
     try {
         const restaurant = await playlistmodel.find();
@@ -17,11 +17,11 @@ palylistrouter.get("/playlist",async(req,res)=>{
 
 
 
-
+//playlist by name ie. only title of login user
 palylistrouter.get("/playlist/:id",async(req,res)=>{
     try {
 const userid = req.params.id
-const resp =await playlistmodel.find({userid}).select({ title:1, _id:0,})
+const resp =await playlistmodel.find({userid}).select({ title:1, _id:1,})
 console.log(resp)
 res.status(200).send(resp)
         
@@ -32,13 +32,13 @@ res.status(200).send(resp)
 })
 
 
-
+ //user that has created his plylist
 palylistrouter.get("/playlistmovie/:uid",async(req,res)=>{
     try {
 const userid = req.params.uid
 
 const allpaly =await playlistmodel.find({userid})
-res.status(200).json({data:allpaly})
+res.status(200).json({data:allpaly, flag : true, length: allpaly.length})
         
     } catch (error) {
         console.log(error)
@@ -48,7 +48,7 @@ res.status(200).json({data:allpaly})
   
 
 
-
+//create plylist
 palylistrouter.post("/create",async(req,res)=>{
     try {
         const { title, desc,isprivate,userid} =req.body
@@ -70,34 +70,35 @@ palylistrouter.post("/create",async(req,res)=>{
         res.status(404).send("faild to create")
     }
 })
+
+
+
   
 
-
-
-
-palylistrouter.post("/movie/:playid", async (req, res) => {
+palylistrouter.post("/playlistcreate/:idplaylist",async(req,res)=>{
     try {
-        const playlistid = req.params.playid;
-        const { Title, poster, year, type } = req.body;
-        console.log(Title, poster, year, type);
-        const playlisttime = await playlistmodel.findById(playlistid);
-        console.log(playlisttime);
 
-        const user = playlisttime.playlist.find((item) => item.Title == Title);
+        const ID=req.params.idplaylist
 
-        console.log(user)
-        if (user) {
-            return res.json({ msg: "Movie already present" });
-        }
-        playlisttime.playlist.push({ Title, poster, year, type });
-        await playlisttime.save();
-        res.send("Movie added to playlist successfully");
+
+        const { Title,poster,year,type} =req.body
+         
+        console.log(Title,poster,year,type)
+
+
+        const playlist = await playlistmodel.findById(ID)
+
+
+        playlist.playList.push({Title,poster,year,type})
+        await playlist.save()
+        res.status(200).json({mag:"movie add"})
+        
     } catch (error) {
-        console.log(error);
-        res.status(404).send("Failed to create");
+       console.log(error) 
+       res.status(404).send("faild to create")
     }
+})
 
-});
 
 
 	

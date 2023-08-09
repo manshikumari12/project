@@ -13,7 +13,7 @@ const playschema = mongoose.Schema({
         year:String,
         type:String,
 
-    },],
+    }],
     userid:mongoose.Schema.Types.ObjectId,
 })
 const playlistmodel = mongoose.model("play",playschema)
